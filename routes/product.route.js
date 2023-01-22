@@ -12,7 +12,7 @@ productRoute.get("/",async(req,res)=>{
             let arr=[];
             for(let i=0;i<category.length;i++){
                 const post1=await ProductModel.find({category:category[i]});
-                arr.push(post1);
+                post1.map((el)=>arr.push(el));
             }
             console.log(arr.length)
             res.send(arr);
