@@ -27,6 +27,24 @@ productRoute.get("/",async(req,res)=>{
 
     }
 })
+productRoute.get("/productPage",async(req,res)=>{
+    let query=req.body.query
+    if(query.sort && query.order && query.category){
+        const post=await ProductModel.find({...query}).sort({price:order})
+        res.send("Sorted")
+    }
+    if(query.sort && query.order ){
+        const post=await ProductModel.find({...query}).sort({price:order})
+        res.send("Sorted")
+    }
+    if( query.category){
+        const post=await ProductModel.find({...query})
+        res.send("Sorted")
+    }
+    else{
+        const post =await ProductModel.find()
+    }
+})
 productRoute.get("/search/:key", async (req, res) => {
     
     console.log(req.params.key)
